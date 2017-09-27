@@ -24,16 +24,19 @@ module.exports = (robot) ->
     apiKey: 'xDdYytirrYZv-WMvkbmS'
   })
 
-  robot.respond /search (.+)/i, (msg) ->
-    room = msg.message.room || 'escape'
-    query = msg.match[1].trim()
-    msg.send "working on it ..."
+  robot.respond /search (.+)/i, (res) ->
+    room = res.message.room || 'escape'
+    query = res.match[1].trim()
+    res.send "working on it ..."
     swiftype.search
       engine: "help-site"
       q: query
       ((err, res) ->
         console.log(res)
-        for o of res.records.page
-          console.log(o)
-
+        attachments = []
+        for i of res.records.page
+          attachments.push {title: page[i].title, title_link: page[i].url}
+        # There are easier ways to post messages, but they do not support attachments
+        # Notice the _required_ arguments `channel` and `text`, and the _optional_ arguments `as_user`, and `unfurl_links`
+        robot.adapter.client.web.chat.postMessage(res.message.room, "Check out this list!", {as_user: true, unfurl_links: false, attachments: attachments})
       )
