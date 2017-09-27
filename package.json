@@ -1,18 +1,19 @@
 {
-  "name": "sergeant_hartman",
+  "name": "xm-help-bot",
   "version": "0.0.1",
   "private": true,
   "author": "Craig Gulliver <cgulliver@xmatters.com>",
-  "description": "Sergeant Hartman is the major incident bot to run escalations comms through xMatters",
+  "description": "Alfred is a bot to help users search xMatters product documentation",
   "dependencies": {
-    "underscore": "^1.8.3",
     "hubot": "^2.19.0",
     "hubot-help": "^0.2.0",
     "hubot-heroku-keepalive": "^1.0.2",
     "hubot-scripts": "^2.17.2",
     "hubot-slack": "^4.3.4",
-    "swiftype": "^0.3.1"
- },
+    "moment": "^2.18.1",
+    "swiftype": "^0.3.1",
+    "underscore": "^1.8.3"
+  },
   "engines": {
     "node": "6.11.1"
   }
