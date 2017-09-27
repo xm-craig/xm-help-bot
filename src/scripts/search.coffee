@@ -27,10 +27,13 @@ module.exports = (robot) ->
   robot.respond /search (.+)/i, (msg) ->
     room = msg.message.room || 'escape'
     query = msg.match[1].trim()
+    msg.send "working on it ..."
     swiftype.search
       engine: "help-site"
       q: query
       ((err, res) ->
         console.log(res)
-        msg.send "working on it"
+        for o of res.records.page
+          console.log(o)
+
       )
