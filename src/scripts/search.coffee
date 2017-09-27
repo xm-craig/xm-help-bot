@@ -16,13 +16,13 @@
 
 _           = require('underscore')
 querystring = require('querystring')
-var SwiftypeApi = require('swiftype')
+swiftypeapi = require('swiftype')
 
-var swiftype = new SwiftypeApi({
-  apiKey: 'xDdYytirrYZv-WMvkbmS'
-})
 
 module.exports = (robot) ->
+  swiftype = new swiftypeapi({
+    apiKey: 'xDdYytirrYZv-WMvkbmS'
+  })
 
   robot.respond /search (.+)/i, (msg) ->
     room = msg.message.room || 'escape'
