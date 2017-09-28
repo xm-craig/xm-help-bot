@@ -43,7 +43,7 @@ module.exports = (robot) ->
                 text: page.category + " \u2022 " + page.body.substr(0, len) + "..."
                 thumb_url: page.image
                 footer: "Last Updated"
-                ts: moment(page.updated_at, "yyyy-MM-ddTHH:mm:ssZ").unix()
+                ts: moment(page.updated_at, moment.ISO_8601).unix()
           attachments.push doc
         # There are easier ways to post messages, but they do not support attachments
         # Notice the _required_ arguments `channel` and `text`, and the _optional_ arguments `as_user`, and `unfurl_links`
