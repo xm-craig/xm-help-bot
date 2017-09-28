@@ -39,8 +39,9 @@ module.exports = (robot) ->
                 color: "99cc00"
                 title: page.title
                 title_link: page.url
+                text: page.highlight.body
                 thumb_url: page.image
-                footer: "Swiftype API"
+                footer: "Last Updated"
                 ts: moment(page.updated_at).utc()
                 fields: [{title: "Category", value: page.category, short: true}]
           attachments.push doc
