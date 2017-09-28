@@ -43,7 +43,7 @@ module.exports = (robot) ->
                 color: "99cc00"
                 title: page.title
                 title_link: page.url
-                text: page.category + " \u2022 " + page.body.substr(0, len) + "..."
+                text: page.category + " \u2022 " + page.body.trim().substr(0, len) + "..."
                 thumb_url: page.image
                 footer: "Last Updated"
                 ts: moment(page.updated_at, moment.ISO_8601).unix()
@@ -75,7 +75,7 @@ module.exports = (robot) ->
                 color: "99cc00"
                 title: page.title
                 title_link: page.url
-                text: page.category + " \u2022 " + page.body.substr(0, len) + "..."
+                text: page.category + " \u2022 " + page.body.trim().substr(0, len) + "..."
                 thumb_url: page.image
                 footer: "Last Updated"
                 ts: moment(page.updated_at, moment.ISO_8601).unix()
