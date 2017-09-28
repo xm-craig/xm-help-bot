@@ -9,8 +9,8 @@
 # Configuration:
 #
 # Commands:
-#  `hubot search help for <query terms>` - Search help site and display top results for the provided search terms.
-#  `hubot search confluence for <query terms>` - Search Confluence and display top results for the provided search terms.
+#  `alfred search help for <query terms>` - Search help site and display top results for the provided search terms.
+#  `alfred search confluence for <query terms>` - Search Confluence and display top results for the provided search terms.
 #
 # Notes:
 #
