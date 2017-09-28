@@ -2,11 +2,12 @@
 xm-help
 =======
 
-A Slack bot that provides a way to search our product help.
+A Slack bot that provides a way to search our product help and confluence wiki.
 
 API
 ---
-*  `hubot search <query terms>` - Display top results for the provided search terms.
+*  `hubot search help for <query terms>` - Search help site and display top results for the provided search terms.
+*  `hubot search confluence for <query terms>` - Search Confluence and display top results for the provided search terms.
 
 ## Configuration
 
