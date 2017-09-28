@@ -42,7 +42,7 @@ module.exports = (robot) ->
                 title_link: page.url
                 footer: "Swiftype API"
                 ts: moment(page.updated_at).utc()
-                fields: [{title: "Category", value: page.category, short: false}]
+                fields: [{title: "Category", value: page.category, short: true}]
           attachments.push doc
         # There are easier ways to post messages, but they do not support attachments
         # Notice the _required_ arguments `channel` and `text`, and the _optional_ arguments `as_user`, and `unfurl_links`
