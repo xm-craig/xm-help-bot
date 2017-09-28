@@ -32,7 +32,6 @@ module.exports = (robot) ->
       q: query
       per_page: 5
       ((err, results) ->
-        console.log(results)
         attachments = []
         for i of results.records.page
           page = results.records.page[i]
