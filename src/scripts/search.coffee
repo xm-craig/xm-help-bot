@@ -67,7 +67,7 @@ module.exports = (robot) ->
       per_page: 5
       ((err, results) ->
         attachments = []
-        // Note that confluence uses a different document type than the help site
+        # Note that confluence uses a different document type than the help site
         for i of results.records.pages
           page = results.records.pages[i]
           len = 137 - page.category.length
