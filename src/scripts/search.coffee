@@ -35,11 +35,12 @@ module.exports = (robot) ->
         attachments = []
         for i of results.records.page
           page = results.records.page[i]
+          len = 137 - page.category.length
           doc = 
                 color: "99cc00"
                 title: page.title
                 title_link: page.url
-                text: page.category + " \u2022 " + page.body.substr(0, 127) + "..."
+                text: page.category + " \u2022 " + page.body.substr(0, len) + "..."
                 thumb_url: page.image
                 footer: "Last Updated"
                 ts: moment(page.updated_at, "yyyy-MM-ddTHH:mm:ssZ").unix()
