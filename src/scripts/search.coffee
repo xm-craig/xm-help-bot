@@ -39,11 +39,10 @@ module.exports = (robot) ->
                 color: "99cc00"
                 title: page.title
                 title_link: page.url
-                text: page.highlight.body
+                text: page.category + " \u2022 " + page.body.substr 0, 127) + "..."
                 thumb_url: page.image
                 footer: "Last Updated"
                 ts: moment(page.updated_at).utc()
-                fields: [{title: "Category", value: page.category, short: true}]
           attachments.push doc
         # There are easier ways to post messages, but they do not support attachments
         # Notice the _required_ arguments `channel` and `text`, and the _optional_ arguments `as_user`, and `unfurl_links`
