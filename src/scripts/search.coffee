@@ -9,8 +9,8 @@
 # Configuration:
 #
 # Commands:
-#  `alfred search help for <query terms>` - Search help site and display top results for the provided search terms.
-#  `alfred search confluence for <query terms>` - Search Confluence and display top results for the provided search terms.
+#  hubot search help for <query terms> - Search help site and display top results for the provided search terms.
+#  hubot search confluence for <query terms> - Search Confluence and display top results for the provided search terms.
 #
 # Notes:
 #
@@ -67,8 +67,9 @@ module.exports = (robot) ->
       per_page: 5
       ((err, results) ->
         attachments = []
-        for i of results.records.page
-          page = results.records.page[i]
+        // Note that confluence uses a different document type than the help site
+        for i of results.records.pages
+          page = results.records.pages[i]
           len = 137 - page.category.length
           doc = 
                 color: "99cc00"
