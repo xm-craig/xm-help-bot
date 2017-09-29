@@ -75,7 +75,7 @@ module.exports = (robot) ->
                 color: "99cc00"
                 title: page.title + " \u2022 " + page.category
                 title_link: page.url
-                text:  page.body.trim().substr(0, 137).replace('\n', ' ') + "..."
+                text:  page.body.trim().substr(0, 137).replace(/\n/, " ") + "..."
                 thumb_url: page.image
                 footer: "Last Updated"
                 ts: moment(page.updated_at, moment.ISO_8601).unix()
