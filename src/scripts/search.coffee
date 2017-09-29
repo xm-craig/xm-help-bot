@@ -41,9 +41,9 @@ module.exports = (robot) ->
           len = 137 - page.category.length
           doc = 
                 color: "99cc00"
-                title: page.title
+                title: page.title + " \u2022 " + page.category
                 title_link: page.url
-                text: page.category + " \u2022 " + page.body.trim().substr(0, len) + "..."
+                text: page.body.trim().substr(0, len) + "..."
                 thumb_url: page.image
                 footer: "Last Updated"
                 ts: moment(page.updated_at, moment.ISO_8601).unix()
@@ -73,9 +73,9 @@ module.exports = (robot) ->
           len = 137 - page.category.length
           doc = 
                 color: "99cc00"
-                title: page.title
+                title: page.title + " \u2022 " + page.category
                 title_link: page.url
-                text: page.category + " \u2022 " + page.url
+                text:  page.body.trim().substr(0, 137).replace('\n', ' ') + "..."
                 thumb_url: page.image
                 footer: "Last Updated"
                 ts: moment(page.updated_at, moment.ISO_8601).unix()
