@@ -22,8 +22,6 @@ swiftypeapi = require('swiftype')
 moment      = require('moment')
 querystring = require('querystring')
 
-VbHQlrJNBnNtGwN1tUSDLGF2
-
 
 module.exports = (robot) ->
   slackbotVerificationToken = process.env.HUBOT_SLACKBOT_TOKEN
@@ -133,14 +131,15 @@ module.exports = (robot) ->
             text: "... here's what I found!"
             attachments: attachments
           console.log("*** SCORES: " + JSON.stringify(output, null, 2))
-          res.end JSON.stringify(output, null, 2)
+          #res.end JSON.stringify(output, null, 2)
 
-# May need to do this asynchronously?
-#          robot.http(response_url)
-#            .header('Content-Type', 'application/json')
-#            .post(JSON.stringify(output, null, 2)) (err, res, body) ->
-#                if err
-#                    console.log("Encountered an error: #{err}")
+           # need to do this asynchronously
+          robot.http(response_url)
+            .header('Content-Type', 'application/json')
+            .post(JSON.stringify(output, null, 2)) (err, res, body) ->
+                if err
+                    console.log("Encountered an error while posting results: #{err}")
+                console.log res.statusCode
       )
 
 
