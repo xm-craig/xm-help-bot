@@ -128,22 +128,23 @@ module.exports = (robot) ->
                 footer: "Last Updated"
                 ts: moment(page.updated_at, moment.ISO_8601).unix()
           attachments.push doc
+        msg_text = "... here's what I found!"
         if (_.size(attachments) == 0)
-          res.end "No hits! Consider changing your search terms"
-        else
-          output =
-            text: "... here's what I found!"
-            attachments: attachments
-          console.log("*** SCORES: " + JSON.stringify(output, null, 2))
-          # This doesn't work in a async callback
-          #res.end JSON.stringify(output, null, 2)
-          # need to do this asynchronously
-          robot.http(response_url)
-            .header('Content-Type', 'application/json')
-            .post(JSON.stringify(output, null, 2)) (err, res, body) ->
-                console.log "Slack post response: #{res.statusCode}"
-                if err
-                    console.log("Encountered an error while posting results: #{err}")
+            msg_text = "No hits! Consider changing your search terms"
+
+        output =
+          text: msg_text
+          attachments: attachments
+        console.log("*** Response: " + JSON.stringify(output, null, 2))
+        # This doesn't work in a async callback
+        #res.end JSON.stringify(output, null, 2)
+        # need to do this asynchronously
+        robot.http(response_url)
+          .header('Content-Type', 'application/json')
+          .post(JSON.stringify(output, null, 2)) (err, res, body) ->
+            console.log "Slack post response: #{res.statusCode}"
+            if err
+              console.log("Encountered an error while posting results: #{err}")
       )
 
 
