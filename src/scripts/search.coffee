@@ -22,9 +22,14 @@ swiftypeapi = require('swiftype')
 moment      = require('moment')
 querystring = require('querystring')
 
+VbHQlrJNBnNtGwN1tUSDLGF2
+
+
 module.exports = (robot) ->
+  slackbotVerificationToken = process.env.HUBOT_SLACKBOT_TOKEN
+
   swiftype = new swiftypeapi({
-    apiKey: 'xDdYytirrYZv-WMvkbmS'
+    apiKey: process.env.HUBOT_SWIFTYPE_TOKEN
   })
 
   robot.respond /search help for (.+)/i, (res) ->
@@ -96,8 +101,8 @@ module.exports = (robot) ->
     terms = req.body.text
     response_url = req.body.response_url
 
-    if (req.body.token != "VbHQlrJNBnNtGwN1tUSDLGF2")
-      console.log "*** Bad token: {req.body.token}"
+    if (req.body.token != slackbotVerificationToken)
+      console.log "*** Received bad token: #{req.body.token}"
       res.sendStatus 400
       return
 
