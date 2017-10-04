@@ -110,8 +110,10 @@ module.exports = (robot) ->
       q: terms
       per_page: per_page
       ((err, results) ->
+        console.log "**** Got some results #{results}"
         if err
-          console.log err
+          console.log "Errors from search #{err}"
+
         attachments = []
         # Note that confluence uses a different document type than the help site
         for i of results.records.pages
@@ -139,9 +141,9 @@ module.exports = (robot) ->
           robot.http(response_url)
             .header('Content-Type', 'application/json')
             .post(JSON.stringify(output, null, 2)) (err, res, body) ->
+                console.log "Slack post response: #{res.statusCode}"
                 if err
                     console.log("Encountered an error while posting results: #{err}")
-                console.log res.statusCode
       )
 
 
