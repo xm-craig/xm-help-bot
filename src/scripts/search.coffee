@@ -97,7 +97,7 @@ module.exports = (robot) ->
     response_url = req.body.response_url
 
     if (req.body.token != "VbHQlrJNBnNtGwN1tUSDLGF2")
-      consle.log "*** Bad token: {req.body.token}"
+      console.log "*** Bad token: {req.body.token}"
       res.sendStatus 400
       return
 
