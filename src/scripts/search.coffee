@@ -88,6 +88,56 @@ module.exports = (robot) ->
           robot.adapter.client.web.chat.postMessage(room, "... and look what I found!", {as_user: true, unfurl_links: false, attachments: attachments})
       )
 
+  robot.router.post "/#{robot.name}/search/:site", (req, res) ->
+    site = req.params.site
+    query = querystring.parse(req._parsedUrl.query)
+    per_page = query.limit || 5
+    terms = req.body.text
+    response_url = req.body.response_url
+
+    if req.body.token != "VbHQlrJNBnNtGwN1tUSDLGF2")
+      consle.log "*** Bad token: {req.body.token}"
+      res.sendStatus 400
+      return
+
+    res.send "Let's take a look ..."
+    swiftype.search
+      engine: site
+      q: terms
+      per_page: per_page
+      ((err, results) ->
+        attachments = []
+        # Note that confluence uses a different document type than the help site
+        for i of results.records.pages
+          page = results.records.pages[i]
+          len = 137 - page.category.length
+          doc =
+                color: "99cc00"
+                title: page.title + " \u2022 " + page.category
+                title_link: page.url
+                text:  page.body.trim().substr(0, 137).replace(/\n/, " ") + "..."
+                thumb_url: page.image
+                footer: "Last Updated"
+                ts: moment(page.updated_at, moment.ISO_8601).unix()
+          attachments.push doc
+        if (_.size(attachments) == 0)
+          res.end "No hits! Consider changing your search terms"
+        else
+          output =
+            text: "... here's what I found!"
+            attachments: attachments
+          console.log("*** SCORES: " + JSON.stringify(output, null, 2))
+          res.end JSON.stringify(output, null, 2)
+
+# May need to do this asynchronously?
+#          robot.http(response_url)
+#            .header('Content-Type', 'application/json')
+#            .post(JSON.stringify(output, null, 2)) (err, res, body) ->
+#                if err
+#                    console.log("Encountered an error: #{err}")
+      )
+
+
   robot.router.get "/#{robot.name}/status", (req, res) ->
     res.end "200 Ok"
 
