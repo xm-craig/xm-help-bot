@@ -104,6 +104,7 @@ module.exports = (robot) ->
       res.sendStatus 400
       return
 
+    console.log "searching for content in #{site}"
     res.send "Let's take a look ..."
     swiftype.search
       engine: site
