@@ -96,6 +96,8 @@ module.exports = (robot) ->
     site = req.params.site
     query = querystring.parse(req._parsedUrl.query)
     per_page = query.limit || 5
+    doc_type = query.type || 'pages'
+
     terms = req.body.text
     response_url = req.body.response_url
 
@@ -116,9 +118,10 @@ module.exports = (robot) ->
           console.log "Errors from search #{err}"
 
         attachments = []
-        # Note that confluence uses a different document type than the help site
-        for i of results.records.pages
-          page = results.records.pages[i]
+        # Note that confluence uses a different document type than the help site, and it must be passed in
+        records = results.records[doc_type]
+        for i of records
+          page = records[i]
           len = 137 - page.category.length
           doc =
                 color: "99cc00"
