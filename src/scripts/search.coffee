@@ -106,14 +106,14 @@ module.exports = (robot) ->
       res.sendStatus 400
       return
 
-    console.log "searching for content in #{site}"
+    #console.log "searching for content in #{site}"
     res.send "Let's take a look ..."
     swiftype.search
       engine: site
       q: terms
       per_page: per_page
       ((err, results) ->
-        console.log "**** Got some results " + JSON.stringify(results)
+        #console.log "**** Got some results " + JSON.stringify(results)
         if err
           console.log "Errors from search #{err}"
 
@@ -139,9 +139,7 @@ module.exports = (robot) ->
         output =
           text: msg_text
           attachments: attachments
-        console.log("*** Response: " + JSON.stringify(output, null, 2))
-        # This doesn't work in a async callback
-        #res.end JSON.stringify(output, null, 2)
+        #console.log("*** Response: " + JSON.stringify(output, null, 2))
         # need to do this asynchronously
         robot.http(response_url)
           .header('Content-Type', 'application/json')
