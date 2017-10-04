@@ -20,6 +20,7 @@
 _           = require('underscore')
 swiftypeapi = require('swiftype')
 moment      = require('moment')
+querystring = require('querystring')
 
 module.exports = (robot) ->
   swiftype = new swiftypeapi({
