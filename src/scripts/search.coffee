@@ -110,7 +110,7 @@ module.exports = (robot) ->
       q: terms
       per_page: per_page
       ((err, results) ->
-        console.log "**** Got some results #{results}"
+        console.log "**** Got some results #{JSON.parse(results)}"
         if err
           console.log "Errors from search #{err}"
 
