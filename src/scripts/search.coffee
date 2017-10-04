@@ -95,7 +95,7 @@ module.exports = (robot) ->
     terms = req.body.text
     response_url = req.body.response_url
 
-    if req.body.token != "VbHQlrJNBnNtGwN1tUSDLGF2")
+    if (req.body.token != "VbHQlrJNBnNtGwN1tUSDLGF2")
       consle.log "*** Bad token: {req.body.token}"
       res.sendStatus 400
       return
