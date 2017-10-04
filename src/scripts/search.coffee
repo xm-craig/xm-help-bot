@@ -110,6 +110,8 @@ module.exports = (robot) ->
       q: terms
       per_page: per_page
       ((err, results) ->
+        if err
+          console.log err
         attachments = []
         # Note that confluence uses a different document type than the help site
         for i of results.records.pages
@@ -131,9 +133,9 @@ module.exports = (robot) ->
             text: "... here's what I found!"
             attachments: attachments
           console.log("*** SCORES: " + JSON.stringify(output, null, 2))
+          # This doesn't work in a async callback
           #res.end JSON.stringify(output, null, 2)
-
-           # need to do this asynchronously
+          # need to do this asynchronously
           robot.http(response_url)
             .header('Content-Type', 'application/json')
             .post(JSON.stringify(output, null, 2)) (err, res, body) ->
